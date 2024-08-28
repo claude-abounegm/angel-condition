@@ -3,6 +3,7 @@
   "version": "1.0.7",
   "description": "A conditional expression parser and interpreter.",
   "main": "dist/index.js",
+  "types": "dist/types",
   "repository": {
     "url": "git@github.com:claude-abounegm/angel-eval.git"
   },
