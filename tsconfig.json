@@ -6,7 +6,7 @@
     "moduleResolution": "Node",
     "noImplicitAny": false,
     "declaration": true,
-    "declarationDir": "@types"
+    "declarationDir": "dist/types"
   },
   "include": [
     "src"
