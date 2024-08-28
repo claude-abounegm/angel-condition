@@ -1,7 +1,11 @@
-import Evaluatable from "../Evaluatable";
+import Evaluatable  from "./../Evaluatable";
 import { evaluateNode } from "../utils";
 
-class ConditionalExpression extends Evaluatable {
+export default class ConditionalExpression extends Evaluatable {
+  private leftNode: any;
+  private rightNode: any;
+  private operator: any;
+
   constructor(leftNode, rightNode, operator) {
     super();
 
@@ -49,5 +53,3 @@ class ConditionalExpression extends Evaluatable {
     throw new Error(this.operator + " not implemented");
   }
 }
-
-export default ConditionalExpression;

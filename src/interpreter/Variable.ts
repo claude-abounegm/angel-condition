@@ -4,6 +4,8 @@ import Evaluatable from "../Evaluatable";
 import { evaluateNode } from "../utils";
 
 class Variable extends Evaluatable {
+
+  private variableName: any;
   constructor(name) {
     super();
 

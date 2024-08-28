@@ -1,4 +1,4 @@
-class Evaluatable {
+export default class Evaluatable {
   /**
    * Evaluates with the given context.
    *
@@ -8,5 +8,3 @@ class Evaluatable {
     throw new Error("the evaluate method needs to be implemented");
   }
 }
-
-export default Evaluatable;

@@ -2,7 +2,6 @@ import memoize from "lodash/memoize";
 import isString from "lodash/isString";
 import isBoolean from "lodash/isBoolean";
 import { Grammar, Parser } from "nearley";
-import Evaluatable from "./Evaluatable";
 
 const grammar = Grammar.fromCompiled(require("./grammar.js"));
 

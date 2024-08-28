@@ -1,12 +1,11 @@
-import { expect } from "chai";
-import { evaluate } from "../src";
-import Evaluatable from "../src/Evaluatable";
-import ShouldNotBeReachedError from "./ShouldNotBeReachedError";
+import { evaluate } from "../dist/index.js";
+import Evaluatable from "../dist/Evaluatable.js";
+import ShouldNotBeReachedError from "./ShouldNotBeReachedError.js";
 
 function evaluateAssert(expression, context, expected) {
   const evaluated = evaluate(expression, context);
 
-  expect(evaluated).to.be.equal(expected);
+  expect(evaluated).toBe(expected);
 }
 
 describe("Evaluatable", function () {
@@ -168,7 +167,7 @@ describe("evaluate()", function () {
       evaluateAssert("cf * 4", {});
       throw new ShouldNotBeReachedError();
     } catch (e) {
-      expect(e.message).to.include("Syntax error");
+      expect(e.message).toContain("Syntax error");
     }
   });
 

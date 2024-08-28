@@ -1,12 +1,13 @@
 import Evaluatable from "./Evaluatable";
 
 class Constant extends Evaluatable {
+  
+  private value: any;
+
   constructor(value) {
     super();
 
     this.value = value;
-
-    // console.log(value);
   }
 
   evaluate(context) {
