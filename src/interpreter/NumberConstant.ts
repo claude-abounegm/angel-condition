@@ -1,5 +1,5 @@
-import Constant from "../Constant";
+import { Constant } from "../Constant";
 
-class NumberConstant extends Constant {}
+export class NumberConstant extends Constant {}
 
 export default NumberConstant;

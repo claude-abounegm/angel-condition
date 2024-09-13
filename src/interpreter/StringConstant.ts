@@ -1,5 +1,5 @@
-import Constant from "../Constant";
+import { Constant } from "../Constant";
 
-class StringConstant extends Constant {}
+export class StringConstant extends Constant {}
 
 export default StringConstant;

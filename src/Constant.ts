@@ -1,18 +1,11 @@
-import Evaluatable from "./Evaluatable";
+import { Evaluatable } from "./Evaluatable";
 
-class Constant extends Evaluatable {
-  
-  private value: any;
-
-  constructor(value) {
+export class Constant extends Evaluatable {
+  constructor(protected value: any) {
     super();
-
-    this.value = value;
   }
 
-  evaluate(context) {
+  public evaluate(context: any) {
     return this.value;
   }
 }
-
-export default Constant;

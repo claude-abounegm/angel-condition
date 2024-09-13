@@ -1,10 +1,9 @@
-export default class Evaluatable {
+export abstract class Evaluatable<
+  TContext = Record<string, any>,
+  TReturn = any
+> {
   /**
    * Evaluates with the given context.
-   *
-   * @param {{ [key: string]: any }} [context]
    */
-  evaluate(context) {
-    throw new Error("the evaluate method needs to be implemented");
-  }
+  abstract evaluate(context: TContext): TReturn;
 }

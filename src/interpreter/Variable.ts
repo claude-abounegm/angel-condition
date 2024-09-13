@@ -1,20 +1,15 @@
-import isArray from "lodash/isArray";
-import get from "lodash/get";
-import Evaluatable from "../Evaluatable";
+import _ from "lodash";
+import { Evaluatable } from "../Evaluatable";
 import { evaluateNode } from "../utils";
+import { Context } from "../interface";
 
-class Variable extends Evaluatable {
-
-  private variableName: any;
-  constructor(name) {
+export class Variable extends Evaluatable {
+  constructor(public readonly variableName: string) {
     super();
-
-    this.variableName = name;
   }
 
-  evaluateVariableName(variableName, context) {
-    if (isArray(variableName)) {
-      // console.log(variableName);
+  evaluateVariableName(variableName: string, context: Context) {
+    if (_.isArray(variableName)) {
       // we can have nested variables
       return variableName.map((n) => evaluateNode(n, context));
     }
@@ -22,10 +17,9 @@ class Variable extends Evaluatable {
     return variableName;
   }
 
-  evaluate(context) {
+  evaluate(context: Context) {
     const variableName = this.evaluateVariableName(this.variableName, context);
-
-    return get(context, variableName);
+    return _.get(context, variableName);
   }
 }
 

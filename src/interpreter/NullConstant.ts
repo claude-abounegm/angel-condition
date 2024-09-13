@@ -1,5 +1,5 @@
-import Constant from "../Constant";
+import { Constant } from "../Constant";
 
-class NullConstant extends Constant {}
+export class NullConstant extends Constant {}
 
 export default NullConstant;

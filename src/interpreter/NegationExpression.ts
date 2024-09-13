@@ -1,15 +1,12 @@
-import Evaluatable from "../Evaluatable";
+import { Evaluatable } from "../Evaluatable";
 import { evaluateNode } from "../utils";
 
-class NegationExpression extends Evaluatable {
-  private node: any;
-  constructor(node) {
+export class NegationExpression extends Evaluatable {
+  constructor(protected node: any) {
     super();
-
-    this.node = node;
   }
 
-  evaluate(context) {
+  evaluate(context: any) {
     return !evaluateNode(this.node, context);
   }
 }
