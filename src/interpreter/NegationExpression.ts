@@ -2,6 +2,7 @@ import Evaluatable from "../Evaluatable";
 import { evaluateNode } from "../utils";
 
 class NegationExpression extends Evaluatable {
+  private node: any;
   constructor(node) {
     super();
 
