@@ -1,6 +1,5 @@
-import ConditionalExpression from "../src/interpreter/ConditionalExpression";
+import { ConditionalExpression } from "../interpreter/ConditionalExpression";
 import ShouldNotBeReachedError from "./ShouldNotBeReachedError";
-import "./evaluate";
 
 describe("ConditionalExpression", function () {
   it("should throw on invalid op", function () {

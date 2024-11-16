@@ -1,16 +1,17 @@
-import Evaluatable from "../Evaluatable";
+import { Evaluatable } from "./../Evaluatable";
 import { evaluateNode } from "../utils";
+import { GeneralNode } from "../interface";
 
-class ConditionalExpression extends Evaluatable {
-  constructor(leftNode, rightNode, operator) {
+export class ConditionalExpression extends Evaluatable {
+  constructor(
+    protected readonly leftNode: GeneralNode,
+    protected readonly rightNode: GeneralNode,
+    protected readonly operator: string
+  ) {
     super();
-
-    this.leftNode = leftNode;
-    this.rightNode = rightNode;
-    this.operator = operator;
   }
 
-  evaluate(context) {
+  public evaluate(context?: any) {
     const left = evaluateNode(this.leftNode, context);
     const right = evaluateNode(this.rightNode, context);
 

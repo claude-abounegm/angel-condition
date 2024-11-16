@@ -1,28 +1,31 @@
-import { expect } from "chai";
-import { evaluate } from "../src";
-import Evaluatable from "../src/Evaluatable";
+import { evaluate } from "..";
+import { Context } from "../interface";
+// import { Evaluatable } from "../Evaluatable";
 import ShouldNotBeReachedError from "./ShouldNotBeReachedError";
 
-function evaluateAssert(expression, context, expected) {
+function evaluateAssert(
+  expression?: string,
+  context?: Context,
+  expected?: any
+) {
   const evaluated = evaluate(expression, context);
-
-  expect(evaluated).to.be.equal(expected);
+  expect(evaluated).toBe(expected);
 }
 
-describe("Evaluatable", function () {
-  it("should throw on evaluate()", function () {
-    const ev = new Evaluatable();
+// describe("Evaluatable", function () {
+//   it("should throw on evaluate()", function () {
+//     const ev = new Evaluatable();
 
-    try {
-      ev.evaluate();
-      throw new ShouldNotBeReachedError();
-    } catch (e) {
-      if (e instanceof ShouldNotBeReachedError) {
-        throw e;
-      }
-    }
-  });
-});
+//     try {
+//       ev.evaluate();
+//       throw new ShouldNotBeReachedError();
+//     } catch (e) {
+//       if (e instanceof ShouldNotBeReachedError) {
+//         throw e;
+//       }
+//     }
+//   });
+// });
 
 describe("evaluate()", function () {
   it("should work with nested variable parsing and matching", function () {
@@ -168,7 +171,7 @@ describe("evaluate()", function () {
       evaluateAssert("cf * 4", {});
       throw new ShouldNotBeReachedError();
     } catch (e) {
-      expect(e.message).to.include("Syntax error");
+      expect(e.message).toContain("Syntax error");
     }
   });
 

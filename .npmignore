@@ -3,3 +3,5 @@ test/*
 grammar.ne
 .nyc_output
 .babelrc
+jest.config.js
+tsconfig.json

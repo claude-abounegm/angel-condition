@@ -1,24 +1,20 @@
-import memoize from "lodash/memoize";
-import isString from "lodash/isString";
-import isBoolean from "lodash/isBoolean";
+import _ from "lodash";
 import { Grammar, Parser } from "nearley";
-import Evaluatable from "./Evaluatable";
+import { Context } from "./interface";
+import { Evaluatable } from "./Evaluatable";
 
-const grammar = Grammar.fromCompiled(require("./grammar.js"));
+const grammar = Grammar.fromCompiled(require("./grammar"));
 
-function createParser() {
+export const createParser = () => {
   return new Parser(grammar);
-}
+};
 
 /**
  * Parses the given expression and returns an
  * `Evaluatable` that can be evaluated with a context.
- *
- * @param {string} expression
- * @returns {Evaluatable}
  */
-const _parse = (expression) => {
-  if (!isString(expression) || expression.length === 0) {
+export const parseNoMemoize = (expression: string): Evaluatable => {
+  if (!_.isString(expression) || expression.length === 0) {
     throw new Error("expression needs to be a non-empty string");
   }
 
@@ -52,34 +48,26 @@ const _parse = (expression) => {
  *
  * You can access the function's cache using `parse.cache`.
  */
-export const parse = memoize(_parse);
+export const parse = _.memoize(parseNoMemoize);
 
 /**
  * Evaluates the given expression using the context provided.
  *
- * @param {string} expression
- * @param {{ [key: string]: any }} [context]
- * @param {boolean} [strictBoolean] Whether to always return a boolean.
- * @returns {boolean}
+ * @param expression The expression to evaluate.
+ * @param context The context to use for evaluation.
+ * @param strictBoolean Whether to always return a boolean.
  */
-export function evaluate(expression, context = {}, strictBoolean = true) {
+export const evaluate = (
+  expression: string,
+  context: Context = {},
+  strictBoolean = true
+): boolean => {
   const node = parse(expression);
 
-  // console.dir(node, { depth: 100 });
-
   let value = node.evaluate(context);
-  if (!isBoolean(value) && strictBoolean) {
+  if (!_.isBoolean(value) && strictBoolean) {
     value = !!value;
   }
 
   return value;
-}
-
-export default {
-  createParser,
-  _parse,
-
-  // public methods
-  parse,
-  evaluate,
 };
