@@ -186,7 +186,7 @@ var grammar = {
     {"name": "unaryExpression", "symbols": ["number"], "postprocess": ([value]) => new NumberConstant(value)},
     {"name": "unaryExpression", "symbols": ["string"], "postprocess": ([value]) => new StringConstant(value)},
     {"name": "unaryExpression", "symbols": ["variablePath"], "postprocess": ([path]) => new Variable(path)},
-    {"name": "unaryExpression", "symbols": [{"literal":"!"}, "_", "expression"], "postprocess": ([,,node]) => new NegationExpression(node)},
+    {"name": "unaryExpression", "symbols": [{"literal":"!"}, "_", "unaryExpression"], "postprocess": ([,,node]) => new NegationExpression(node)},
     {"name": "unaryExpression", "symbols": [{"literal":"("}, "_", "expression", "_", {"literal":")"}], "postprocess": d => d[2]},
     {"name": "variablePath", "symbols": ["variable"], "postprocess": id},
     {"name": "variablePath", "symbols": ["variablePath", "_", {"literal":"."}, "_", "variableAfterDot"], "postprocess": d => [...arrayify(d[0]), d[4]]},

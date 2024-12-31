@@ -51,7 +51,7 @@ unaryExpression ->
         | number {% ([value]) => new NumberConstant(value) %}
         | string {% ([value]) => new StringConstant(value) %}
         | variablePath {% ([path]) => new Variable(path)  %}
-        | "!" _ expression {% ([,,node]) => new NegationExpression(node) %}
+        | "!" _ unaryExpression {% ([,,node]) => new NegationExpression(node) %}
         | "(" _ expression _ ")" {% d => d[2] %}
 
 variablePath ->
