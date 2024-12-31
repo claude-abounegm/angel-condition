@@ -153,6 +153,10 @@ describe("evaluate()", function () {
     evaluateAssert("!true", {}, false);
     evaluateAssert("!false", {}, true);
     evaluateAssert("!var", { var: false }, true);
+    evaluateAssert("!a && b && c", { a: false, b: false, c: true }, false);
+    evaluateAssert("!(a && b) && c", { a: false, b: false, c: true }, true);
+    evaluateAssert("a && !b && c", { a: true, b: false, c: true }, true);
+    evaluateAssert("!a || b && c", { a: false, b: false, c: true }, true);
   });
 
   it("should work with a single literal", function () {
